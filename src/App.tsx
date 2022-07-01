@@ -94,7 +94,6 @@ function App() {
     }
     return (
         <div className="App">
-            <p>bekka</p>
             <AddItemForm addItem={addTodolist}/>
             {
                 todolists.map((tl) => {
