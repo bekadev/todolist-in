@@ -40,7 +40,7 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
                 onChange={onChangeHandler}
                 onKeyPress={onKeyPressHandler}
                 error={!!error}
-                helperText={error}
+                // helperText={error}
             />
             <IconButton onClick={addTask} color={"primary"}>
                 <ControlPointIcon/>
