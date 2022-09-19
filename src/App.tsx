@@ -28,7 +28,7 @@ function App() {
     ])
 
 
-    let [tasksObj, setTasks] = useState({
+    let [tasksObj, setTasksObj] = useState({
         [todolistId1]: [
             {id: v1(), title: 'Beka', isDone: true},
             {id: v1(), title: 'Ali', isDone: false},
@@ -47,7 +47,7 @@ function App() {
         let filteredTodolist = todolists.filter(tl => tl.id !== todolistsId)
         setTodolists(filteredTodolist)
         delete tasksObj[todolistsId]
-        setTasks({...tasksObj})
+        setTasksObj({...tasksObj})
     }
 
     let onChangeTodolistTitle = (id: string, newTitle: string) => {
@@ -58,9 +58,8 @@ function App() {
         }
     }
 
-
     function removeTasks(id: string, todolistId: string) {
-        setTasks({...tasksObj, [todolistId]: tasksObj[todolistId].filter(el => el.id !== id)})
+        setTasksObj({...tasksObj, [todolistId]: tasksObj[todolistId].filter(el => el.id !== id)})
     }
 
     function changeFilter(value: FilterValuesType, todolistId: string) {
@@ -73,18 +72,18 @@ function App() {
             title: title,
             isDone: false
         }
-        setTasks({...tasksObj, [todolistId]: [task, ...tasksObj[todolistId]]})
+        setTasksObj({...tasksObj, [todolistId]: [task, ...tasksObj[todolistId]]})
     }
 
     function changeStatus(taskId: string, isDone: boolean, todolistId: string) {
-        setTasks({
+        setTasksObj({
             ...tasksObj,
             [todolistId]: tasksObj[todolistId].map(el => el.id === taskId ? {...el, isDone: isDone} : el)
         })
     }
 
     function changeSpan(taskId: string, newTitle: string, todolistId: string) {
-        setTasks({
+        setTasksObj({
             ...tasksObj,
             [todolistId]: tasksObj[todolistId].map(el => el.id === taskId ? {...el, title: newTitle} : el)
         })
@@ -97,7 +96,7 @@ function App() {
             title: title
         }
         setTodolists([todolist, ...todolists])
-        setTasks({
+        setTasksObj({
             ...tasksObj,
             [todolist.id]: []
         })
