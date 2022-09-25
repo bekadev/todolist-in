@@ -1,17 +1,17 @@
-import React, {ChangeEvent} from "react"
-import {FilterValuesType} from "../App"
-import {AddItemForm} from "./AddItemForm"
-import {EditableSpan} from './EditableSpan'
-import {Button, Checkbox, IconButton} from "@mui/material";
-import {Delete} from "@mui/icons-material";
+import React, {ChangeEvent} from "react" // подключаем реакт и метод ChangeEvent
+import {FilterValuesType} from "../App" // подключаем тип FilterValuesType
+import {AddItemForm} from "./AddItemForm" // компонет AddItemForm
+import {EditableSpan} from './EditableSpan' // компонет EditableSpan
+import {Button, Checkbox, IconButton} from "@mui/material"; // библиотека mui/material {Button, Checkbox, IconButton}
+import {Delete} from "@mui/icons-material"; //  icons-material
 
-export type TaskType = {
+export type TaskType = { // создаем тип TaskType
     id: string
     title: string
     isDone: boolean
 }
 
-type TodolistPropsType = {
+type TodolistPropsType = { // создаем тип TodolistPropsType
     id: string
     title: string
     tasks: Array<TaskType>
@@ -25,7 +25,7 @@ type TodolistPropsType = {
     onChangeTodolistTitle: (id: string, newTitle: string) => void
 }
 
-export const Todolist = (props: TodolistPropsType) => {
+export const Todolist = (props: TodolistPropsType) => { // создаем компонент внутри которого есть props с типам TodolistPropsType
     const onAllClickHandler = () => props.changeFilter('all', props.id)
     const onActiveClickHandler = () => props.changeFilter('active', props.id)
     const onComplitedClickHandler = () => props.changeFilter('complited', props.id)
