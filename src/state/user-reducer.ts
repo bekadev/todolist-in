@@ -9,14 +9,27 @@ type ActionType = {
     [kay: string]: any
 }
 
-export const userReducer = (state: StateType, action: ActionType) => {
+export const userReducer = (state: StateType, action: ActionType): StateType => {
     switch (action.type) {
         case 'INCREMENT-AGE':
-            state.age = state.age + 1;
-            return state;
+            return {
+                ...state,
+                age: state.age + 1
+            }
+            // Можно и так писать
+            //let newState = {...state}
+            //newState.age = state.age + 1;
+            //return newState;
         case 'INCREMENT-CHILDREN-COUNT':
-            state.childrenCount = state.childrenCount + 1;
-            return state;
+            return {
+                ...state,
+                childrenCount: state.childrenCount + 1
+            }
+        case 'CHANGE-NAME':
+            return {
+                ...state,
+                name: action.newName
+            }
         default:
             throw new Error('I dont understand this action type')
     }
