@@ -27,7 +27,6 @@ function App() {
         {id: todolistId2, title: 'What to buy', filter: 'all'}
     ])
 
-
     let [tasksObj, setTasksObj] = useState({
         [todolistId1]: [
             {id: v1(), title: 'Beka', isDone: true},
@@ -58,12 +57,25 @@ function App() {
         }
     }
 
-    function removeTasks(id: string, todolistId: string) {
-        setTasksObj({...tasksObj, [todolistId]: tasksObj[todolistId].filter(el => el.id !== id)})
+    function addTodolist(title: string) {
+        let todolist: TodolistType = {
+            id: v1(),
+            filter: 'all',
+            title: title
+        }
+        setTodolists([todolist, ...todolists])
+        setTasksObj({
+            ...tasksObj,
+            [todolist.id]: []
+        })
     }
 
     function changeFilter(value: FilterValuesType, todolistId: string) {
         setTodolists(todolists.map(el => el.id === todolistId ? {...el, filter: value} : el))
+    }
+
+    function removeTasks(id: string, todolistId: string) {
+        setTasksObj({...tasksObj, [todolistId]: tasksObj[todolistId].filter(el => el.id !== id)})
     }
 
     function addTask(title: string, todolistId: string) {
@@ -86,19 +98,6 @@ function App() {
         setTasksObj({
             ...tasksObj,
             [todolistId]: tasksObj[todolistId].map(el => el.id === taskId ? {...el, title: newTitle} : el)
-        })
-    }
-
-    function addTodolist(title: string) {
-        let todolist: TodolistType = {
-            id: v1(),
-            filter: 'all',
-            title: title
-        }
-        setTodolists([todolist, ...todolists])
-        setTasksObj({
-            ...tasksObj,
-            [todolist.id]: []
         })
     }
 
